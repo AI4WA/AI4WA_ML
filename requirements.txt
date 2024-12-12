@@ -1,0 +1,7 @@
+loguru
+pyyaml
+requests
+geopandas
+tqdm
+qdrant-client
+fastembed
