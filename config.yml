@@ -1,0 +1,7 @@
+platform:
+  url: http://localhost:8000
+  token: aceb0b0d35ccb85b2426e0db1714bae510b60ce8
+qdrant:
+  url: http://localhost
+  port: 6334
+  api_key:
