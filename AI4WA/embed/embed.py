@@ -15,7 +15,7 @@ class Embedding:
         self.embedding_model = TextEmbedding()
         self.qdrant_client = QdrantClient(
             url=self.config["qdrant"]["url"],
-            port=self.config["qdrant"]["port"],
+            port=self.config["qdrant"]["port"] if "https" not in self.config["qdrant"]["url"] else None,
         )
         self.init_collection("wamex")
 
@@ -56,7 +56,10 @@ class Embedding:
         # get the existing collections, if exists, skip
         collections = self.qdrant_client.get_collections()
         for collection in collections:
-            logger.info(collection[1][0].name)
+            logger.info(collection)
+            if not len(collection[1]):
+                continue
+
             if collection[1][0].name == collection_name:
                 logger.info(f"Collection {collection_name} already exists")
                 return
